@@ -52,6 +52,8 @@ def pages(request):
 
 #         return context_data
 
+api_key = "yourpassword"
+
 
 class APISensorView(APIView):
     def get(self, request):
@@ -60,8 +62,10 @@ class APISensorView(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        serializer = SensorSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        if request.data == api_key:
+            del request.data['api_key']
+            serializer = SensorSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
