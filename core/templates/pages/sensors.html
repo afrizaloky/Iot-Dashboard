@@ -1,0 +1,123 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card ">
+                    <div class="card-header ">
+                        <h4 class="card-title">Data Sensor</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body ">
+                        {% if all_sensors %}
+
+                        <ul>
+                            {%for s in all_sensors%}
+                            <li>{{s.sensor_id}} : {{s.sensor_name}} -> {{s.sensor_value}}</li>
+                            {% endfor %}
+
+                        </ul>
+
+                        {% else %}
+                        <h3>data sensor is not exist</h3>
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card ">
+                    <div class="card-header ">
+                        <h4 class="card-title">Received Data</h4>
+                        <p class="card-category">24 Hours</p>
+                    </div>
+                    <div class="card-body ">
+                        <div id="chartHours" class="ct-chart"></div>
+                    </div>
+                    <div class="card-footer ">
+                        <div class="legend">
+                            <i class="fa fa-circle text-info"></i> DHT11
+                            <i class="fa fa-circle text-danger"></i> lainnya
+                            <i class="fa fa-circle text-warning"></i> HC-SR04
+                        </div>
+                        <hr />
+                        <div class="stats">
+                            <i class="fa fa-history"></i> Updated 3 minutes ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card ">
+                    <div class="card-header ">
+                        <h4 class="card-title">Data Sensor</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body ">
+                        {% if all_sensors %}
+
+                        <ul>
+                            {%for s in all_sensors%}
+                            <li>{{s.sensor_id}} : {{s.sensor_name}} -> {{s.sensor_value}}</li>
+                            {% endfor %}
+
+                        </ul>
+
+                        {% else %}
+                        <h3>data sensor is not exist</h3>
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card ">
+                    <div class="card-header ">
+                        <h4 class="card-title">Data Statistik</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body ">
+                        {% if all_sensors %}
+                        <ul>
+                            {%for s in all_sensors%}
+
+                            <li>{{s.sensor_id}} : {{s.sensor_name}} -> {{s.sensor_value}}</li>
+
+
+                            {% endfor %}
+
+                        </ul>
+
+                        {% else %}
+                        <h3>data sensor is not exist</h3>
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+        // demo.showNotification();
+    });
+</script>
+{% endblock javascripts %}
