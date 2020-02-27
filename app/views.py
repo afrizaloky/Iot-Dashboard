@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Sensor
 from .serializers import SensorSerializer
-
+import json
 # @login_required(login_url="/login/")
 
 
@@ -62,7 +62,7 @@ class APISensorView(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        if request.data == api_key:
+        if request.data['api_key'] == api_key:
             del request.data['api_key']
             serializer = SensorSerializer(data=request.data)
             if serializer.is_valid():
