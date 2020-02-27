@@ -27,10 +27,11 @@ def pages(request):
 
         load_template = request.path.split('/')[-1]
         template = loader.get_template('pages/' + load_template)
+        print(load_template)
         if(load_template == "sensors.html"):
             all_sensors = Sensor.objects.all()
             context = {"all_sensors": all_sensors}
-
+            print(all_sensors)
             # return render(request, "pages/sensors.html", {"all_sensors": all_sensors})
 
         return HttpResponse(template.render(context, request))
@@ -41,15 +42,15 @@ def pages(request):
         return HttpResponse(template.render(context, request))
 
 
-class ListSensorView(TemplateView):
-    # template_name = 'pages/sensors.html'
+# class ListSensorView(TemplateView):
+#     # template_name = 'pages/sensors.html'
 
-    def get_context_data(self, **kwargs):
-        context_data = super(ListSensorView, self).get_context_data(**kwargs)
-        all_sensors = Sensor.objects.all()
-        context_data['all_sensors'] = all_sensors
+#     def get_context_data(self, **kwargs):
+#         context_data = super(ListSensorView, self).get_context_data(**kwargs)
+#         all_sensors = Sensor.objects.all()
+#         context_data['all_sensors'] = all_sensors
 
-        return context_data
+#         return context_data
 
 
 class APISensorView(APIView):
