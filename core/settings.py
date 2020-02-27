@@ -28,7 +28,7 @@ SECRET_KEY = '@zgdlavpxnk*ow^#7jsao#_je+v3^+^pu!c$dbq4b16_tz2xls'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False)
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', config(
     'PRODUCTION_SERVER', default='127.0.0.1')]
