@@ -1,0 +1,17 @@
+
+asgiref
+autopep8
+Django==2.1.*
+pycodestyle
+pytz
+sqlparse
+Unipath
+dj-database-url
+python-decouple
+gunicorn
+whitenoise
+django-heroku
+asgiref==3.2.3
+djangorestframework==3.11.0
+pytz==2019.3
+sqlparse==0.3.0
