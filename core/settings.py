@@ -24,14 +24,16 @@ PROJECT_DIR = Path(__file__).parent
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@zgdlavpxnk*ow^#7jsao#_je+v3^+^pu!c$dbq4b16_tz2xls'
+SECRET_KEY = config(
+    'SECRET_KEY', default='@zgdlavpxnk*ow^#7jsao#_je+v3^+^pu!c$dbq4b16_tz2xls')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False)
+DEBUG = config('DEBUG', default=0)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', config(
-    'PRODUCTION_SERVER', default='127.0.0.1')]
-CSRF_TRUSTED_ORIGINS = [config('PRODUCTION_SERVER', default='127.0.0.1')]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'ghiscure.herokuapp.com']
+
+
+# CSRF_TRUSTED_ORIGINS = ['ghiscure.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
