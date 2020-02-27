@@ -42,7 +42,7 @@ def pages(request):
 
 
 class ListSensorView(TemplateView):
-    template_name = 'pages/sensors.html'
+    # template_name = 'pages/sensors.html'
 
     def get_context_data(self, **kwargs):
         context_data = super(ListSensorView, self).get_context_data(**kwargs)
