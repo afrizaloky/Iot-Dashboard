@@ -10,6 +10,8 @@ $.ajax({
     var sensor_003 = [];
     var sensor_005 = [];
     var sensor_1 = [];
+
+    // get last 10 data
     for (x of data.slice(Math.max(data.length - 10, 0))) {
       if (x["fields"]["sensor_id"] == "0004") {
         // sensor_004[0] = x["fields"]["sensor_value"];
