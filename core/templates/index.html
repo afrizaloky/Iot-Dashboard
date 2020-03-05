@@ -31,26 +31,19 @@
         <div class="card ">
           <div class="card-header ">
             <h4 class="card-title">Device Sensor Statistics</h4>
-            <p class="card-category"></p>
+            <p class="card-category">Last Campaign Performance</p>
           </div>
           <div class="card-body ">
-            <div id="chartgauge" class="ct-chart ct-perfect-fourth">
-              <!-- <canvas id="da-gauge"></canvas> -->
-            </div>
-
-            <div class="legend">
-              <i class="fa fa-circle text-info"></i> Open
-              <i class="fa fa-circle text-danger"></i> Bounce
-              <i class="fa fa-circle text-warning"></i> Unsubscribe
-            </div>
+            <div id="map" class="ct-chart"></div>
             <hr />
             <div class="stats">
-              <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+              <i class="fa fa-history"></i> Updated 1 minutes ago
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+
+      <div class="col-md-2">
         <div class="card ">
           <div class="card-header ">
             <h4 class="card-title">Users Behavior</h4>
@@ -257,7 +250,7 @@
     // Javascript method's body can be found in assets/js/demos.js
     demo.initDashboardPageCharts();
     demo.showNotification();
-
+    demo.initGoogleMaps();
   });
 </script>
 
