@@ -10,6 +10,9 @@ from rest_framework.response import Response
 from .models import Sensor
 from .serializers import SensorSerializer
 import json
+from django.core import serializers
+from django.http import JsonResponse
+
 # @login_required(login_url="/login/")
 
 
@@ -40,6 +43,13 @@ def pages(request):
 
         template = loader.get_template('pages/error-404.html')
         return HttpResponse(template.render(context, request))
+
+
+def getData(request):
+    json_serializer = serializers.get_serializer("json")()
+    data_sensor = json_serializer.serialize(Sensor.objects.all())
+    data_sensor = json.loads(data_sensor)
+    return JsonResponse(data_sensor, safe=False)
 
 
 # class ListSensorView(TemplateView):
