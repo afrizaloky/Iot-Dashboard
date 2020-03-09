@@ -1,29 +1,68 @@
-$(function () {
+$(function() {
   $("#slider-range-max").slider({
     range: "max",
     min: 0,
     max: 180,
     value: 0,
-    slide: function (event, ui) {
+    slide: function(event, ui) {
       $("#amount").val(ui.value);
       var values = ui.value;
-      console.log(values);
+      var mqtt;
+      var reconnectTimeout = 2000;
+      var host = "broker.hivemq.com"; //change this
+      var port = 8000;
+      // console.log(values);
+      function onFailure(message) {
+        console.log("Connection Attempt to Host " + host + "Failed");
+        setTimeout(MQTTconnect, reconnectTimeout);
+      }
+      function onMessageArrived(msg) {
+        out_msg = "Message received " + msg.payloadString + "<br>";
+        out_msg = out_msg + "Message received Topic " + msg.destinationName;
+        console.log(out_msg);
+      }
+
+      function onConnect() {
+        // Once a connection has been made, make a subscription and send a message.
+
+        console.log("Connected ");
+        mqtt.subscribe("ghiscure");
+        console.log(typeof values);
+        var msg_tmp = values.toString();
+
+        console.log(msg_tmp);
+
+        message = new Paho.MQTT.Message(msg_tmp);
+        message.destinationName = "ghiscure";
+        mqtt.send(message);
+      }
+      function MQTTconnect() {
+        console.log("connecting to " + host + " " + port);
+        mqtt = new Paho.MQTT.Client(host, port, "clientjs");
+        //document.write("connecting to "+ host);
+        var options = {
+          timeout: 3,
+          onSuccess: onConnect,
+          onFailure: onFailure
+        };
+        mqtt.onMessageArrived = onMessageArrived;
+
+        mqtt.connect(options); //connect
+      }
+      MQTTconnect();
+      // console.log(values);
     }
   });
   $("#amount").val($("#slider-range-max").slider("value"));
-  var value = $("#slider-range-max").slider("option", "value");
-  console.log(value);
+  // var value = $("#slider-range-max").slider("option", "value");
+  // console.log(value);
 });
-
-
-
-
 
 var endpoint = "/getData";
 $.ajax({
   method: "GET",
   url: endpoint,
-  success: function (data) {
+  success: function(data) {
     console.log(data);
 
     max = 100;
@@ -57,18 +96,7 @@ $.ajax({
     // console.log(sensor_004);
     // console.log(sensor_005);
     var data = {
-      labels: [
-        "-9",
-        "-8",
-        "-7",
-        "-6",
-        "-5",
-        "-4",
-        "-3",
-        "-2",
-        "-1",
-        "now"
-      ],
+      labels: ["-9", "-8", "-7", "-6", "-5", "-4", "-3", "-2", "-1", "now"],
       series: [sensor_1]
     };
     var optionsSales = {
@@ -92,7 +120,7 @@ $.ajax({
         "screen and (max-width: 640px)",
         {
           axisX: {
-            labelInterpolationFnc: function (value) {
+            labelInterpolationFnc: function(value) {
               return value[0];
             }
           }
@@ -106,9 +134,11 @@ $.ajax({
       responsiveSales
     );
     Chartist.Pie(
-      "#chartDonut", {
+      "#chartDonut",
+      {
         series: sensor_004
-      }, {
+      },
+      {
         donut: true,
         donutWidth: 60,
         donutSolid: true,
@@ -118,7 +148,7 @@ $.ajax({
       }
     );
   },
-  error: function (error_data) {
+  error: function(error_data) {
     console.log(error_data);
   }
 });
