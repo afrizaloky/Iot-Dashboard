@@ -1,0 +1,23 @@
+{
+  "name": "dashboard_iot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "mqtt": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afrizaloky/Iot-Dashboard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/afrizaloky/Iot-Dashboard/issues"
+  },
+  "homepage": "https://github.com/afrizaloky/Iot-Dashboard#readme"
+}
