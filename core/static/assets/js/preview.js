@@ -1,3 +1,24 @@
+$(function () {
+  $("#slider-range-max").slider({
+    range: "max",
+    min: 0,
+    max: 180,
+    value: 0,
+    slide: function (event, ui) {
+      $("#amount").val(ui.value);
+      var values = ui.value;
+      console.log(values);
+    }
+  });
+  $("#amount").val($("#slider-range-max").slider("value"));
+  var value = $("#slider-range-max").slider("option", "value");
+  console.log(value);
+});
+
+
+
+
+
 var endpoint = "/getData";
 $.ajax({
   method: "GET",
