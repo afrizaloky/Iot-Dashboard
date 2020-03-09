@@ -10,40 +10,19 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2">
-                <div class="card ">
-                    <div class="card-header ">
-                        <h4 class="card-title">Received Data</h4>
-                        <p class="card-category">24 Hours</p>
-                    </div>
-                    <div class="card-body ">
-                        <div id="chartDonut" class="ct-chart ct-perfect-fourth"></div>
-                    </div>
-                    <div class="card-footer ">
-                        <div class="legend">
-                            <i class="fa fa-circle text-info"></i> Sensor1
-                        </div>
-                        <div class="stats">
-                            <i class="fa fa-history"></i> Updated 3 minutes ago
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-8">
                 <div class="card ">
                     <div class="card-header ">
-                        <h4 class="card-title">Received Data</h4>
-                        <p class="card-category">24 Hours</p>
+                        <h4 class="card-title">Slider</h4>
+                        <label for="amount">Servo</label>
+                        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        </p>
+                        <!-- <p class="card-category">24 Hours</p> -->
                     </div>
                     <div class="card-body ">
-                        <div id="chartHours" class="ct-chart"></div>
+                        <div id="slider-range-max"></div>
                     </div>
                     <div class="card-footer ">
-                        <div class="legend">
-                            <i class="fa fa-circle text-info"></i> Sensor1
-                            <i class="fa fa-circle text-danger"></i> Sensor2
-                            <i class="fa fa-circle text-warning"></i> Sensor3
-                        </div>
                         <hr />
                         <div class="stats">
                             <i class="fa fa-history"></i> Updated 3 minutes ago

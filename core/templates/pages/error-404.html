@@ -1,19 +1,55 @@
-{% extends 'layouts/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %} UI Notifications {% endblock title %}
 
-<!-- Specific CSS goes HERE -->
-{% block stylesheets %}{% endblock stylesheets %}
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-{% block content %}
+    <!-- Favicon - loaded as static -->
+    <link href="/assets/img/favicon.ico" rel="icon" type="image/png">
 
-<div class="content">
-    <div class="container-fluid">
-        <h1>404</h1>
+    <title>
+        {% block title %} 404 {% endblock %}
+    </title>
+
+    <meta name="description" content="IoT Dashboard.">
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Kanit:200" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link type="text/css" rel="stylesheet" href="/static/assets/css/style.css" />
+
+    <!-- Specific CSS goes HERE -->
+    {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+
+
+<body>
+
+    <div id="notfound">
+        <div class="notfound">
+            <div class="notfound-404">
+                <h1>404</h1>
+            </div>
+            <h2>Oops! Nothing was found</h2>
+            <p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.
+                <a href="http://ghiscure.herokuapp.com">Return to homepage</a></p>
+            <div class="notfound-social">
+                <a href="https://facebook.com"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+            </div>
+        </div>
     </div>
-</div>
 
-{% endblock content %}
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
-<!-- Specific JS goes HERE -->
-{% block javascripts %}{% endblock javascripts %}
+</html>
