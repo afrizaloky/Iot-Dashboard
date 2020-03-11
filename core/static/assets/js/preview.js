@@ -11,8 +11,8 @@ $(function () {
       var reconnectTimeout = 2000;
       // var host = "broker.hivemq.com"; //change this
       // var port = 8000;
-      var host = "192.168.100.138"; //change this
-      var host = "ghiscure.ddns.net"; //change this
+      // var host = "192.168.100.137"; //change this
+      var host = "wss://ghiscure.ddns.net"; //change this
       var port = 9001;
       // console.log(values);
       function onFailure(message) {
