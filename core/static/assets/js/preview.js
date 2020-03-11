@@ -1,21 +1,25 @@
-$(function() {
+$(function () {
   $("#slider-range-max").slider({
     range: "max",
     min: 0,
     max: 180,
     value: 0,
-    slide: function(event, ui) {
+    slide: function (event, ui) {
       $("#amount").val(ui.value);
       var values = ui.value;
       var mqtt;
       var reconnectTimeout = 2000;
-      var host = "broker.hivemq.com"; //change this
-      var port = 8000;
+      // var host = "broker.hivemq.com"; //change this
+      // var port = 8000;
+      var host = "192.168.100.138"; //change this
+      var host = "ghiscure.ddns.net"; //change this
+      var port = 9001;
       // console.log(values);
       function onFailure(message) {
-        console.log("Connection Attempt to Host " + host + "Failed");
+        console.log("Connection Attempt to Host " + host + " Failed");
         setTimeout(MQTTconnect, reconnectTimeout);
       }
+
       function onMessageArrived(msg) {
         out_msg = "Message received " + msg.payloadString + "<br>";
         out_msg = out_msg + "Message received Topic " + msg.destinationName;
@@ -36,6 +40,7 @@ $(function() {
         message.destinationName = "ghiscure";
         mqtt.send(message);
       }
+
       function MQTTconnect() {
         console.log("connecting to " + host + " " + port);
         mqtt = new Paho.MQTT.Client(host, port, "clientjs");
@@ -53,7 +58,7 @@ $(function() {
       // console.log(values);
     }
   });
-  $("#amount").val($("#slider-range-max").slider("value"));
+  // $("#amount").val($("#slider-range-max").slider("value"));
   // var value = $("#slider-range-max").slider("option", "value");
   // console.log(value);
 });
@@ -62,8 +67,8 @@ var endpoint = "/getData";
 $.ajax({
   method: "GET",
   url: endpoint,
-  success: function(data) {
-    console.log(data);
+  success: function (data) {
+    // console.log(data);
 
     max = 100;
     var sensor_004 = [];
@@ -92,7 +97,7 @@ $.ajax({
       }
     }
     // sensor_003.push("20");
-    console.log(sensor_1);
+    // console.log(sensor_1);
     // console.log(sensor_004);
     // console.log(sensor_005);
     var data = {
@@ -120,7 +125,7 @@ $.ajax({
         "screen and (max-width: 640px)",
         {
           axisX: {
-            labelInterpolationFnc: function(value) {
+            labelInterpolationFnc: function (value) {
               return value[0];
             }
           }
@@ -133,22 +138,9 @@ $.ajax({
       optionsSales,
       responsiveSales
     );
-    Chartist.Pie(
-      "#chartDonut",
-      {
-        series: sensor_004
-      },
-      {
-        donut: true,
-        donutWidth: 60,
-        donutSolid: true,
-        startAngle: 270,
-        total: 180,
-        showLabel: true
-      }
-    );
+
   },
-  error: function(error_data) {
+  error: function (error_data) {
     console.log(error_data);
   }
 });
