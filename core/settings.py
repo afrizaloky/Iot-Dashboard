@@ -31,10 +31,10 @@ SECRET_KEY = config(
 DEBUG = config('DEBUG', default=False)
 # DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['ghiscure.herokuapp.com', 'localhost', '127.0.0.1']
 
 
-# CSRF_TRUSTED_ORIGINS = ['ghiscure.herokuapp.com', '127.0.0.1', 'localhost']
+CSRF_TRUSTED_ORIGINS = ['ghiscure.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
