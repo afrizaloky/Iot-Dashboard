@@ -1,16 +1,18 @@
-$(function () {
+$(function() {
   $("#slider-range-max").slider({
     range: "max",
     min: 0,
     max: 180,
     value: 0,
-    slide: function (event, ui) {
+    slide: function(event, ui) {
       $("#amount").val(ui.value);
       var values = ui.value;
       var mqtt;
       var reconnectTimeout = 2000;
       var host = "broker.hivemq.com"; //change this
       var port = 8000;
+      // var host = "test.mosquitto.org"; //change this
+      // var port = 8080;
       // var host = "192.168.100.137"; //change this
       // var host = "ghiscure.ddns.net"; //change this
       // var port = 9001;
@@ -30,14 +32,14 @@ $(function () {
         // Once a connection has been made, make a subscription and send a message.
 
         console.log("Connected ");
-        mqtt.subscribe("ghiscure");
+        mqtt.subscribe("ghiscure/sensor1");
         console.log(typeof values);
         var msg_tmp = values.toString();
 
         console.log(msg_tmp);
 
         message = new Paho.MQTT.Message(msg_tmp);
-        message.destinationName = "ghiscure";
+        message.destinationName = "ghiscure/sensor1";
         mqtt.send(message);
       }
 
@@ -67,7 +69,7 @@ var endpoint = "/getData";
 $.ajax({
   method: "GET",
   url: endpoint,
-  success: function (data) {
+  success: function(data) {
     // console.log(data);
 
     max = 100;
@@ -125,7 +127,7 @@ $.ajax({
         "screen and (max-width: 640px)",
         {
           axisX: {
-            labelInterpolationFnc: function (value) {
+            labelInterpolationFnc: function(value) {
               return value[0];
             }
           }
@@ -138,9 +140,8 @@ $.ajax({
       optionsSales,
       responsiveSales
     );
-
   },
-  error: function (error_data) {
+  error: function(error_data) {
     console.log(error_data);
   }
 });

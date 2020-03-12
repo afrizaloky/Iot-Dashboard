@@ -29,7 +29,6 @@ SECRET_KEY = config(
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False)
-# DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'ghiscure.herokuapp.com']
 
