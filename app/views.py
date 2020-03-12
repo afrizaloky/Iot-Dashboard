@@ -32,9 +32,11 @@ def pages(request):
         template = loader.get_template('pages/' + load_template)
         print(load_template)
         if(load_template == "sensors.html"):
+            print("sensors pages")
             all_sensors = Sensor.objects.all()
-            context = {"all_sensors": all_sensors}
             print(all_sensors)
+            context = {"all_sensors": all_sensors}
+
             # return render(request, "pages/sensors.html", {"all_sensors": all_sensors})
 
         return HttpResponse(template.render(context, request))
