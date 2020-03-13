@@ -5,23 +5,54 @@
 // setInterval('autoRefreshPage()', 5000);
 
 // Slider
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+var last;
 $(function () {
+
+  $.ajax({
+    method: "GET",
+    url: "/getSlider",
+    success: function (data) {
+      last = data[data.length - 1]["fields"]["slider_value"];
+      console.log(last);
+    },
+    async: false
+  });
+  console.log(last)
   $("#slider-range-max").slider({
     range: "max",
     min: 0,
     max: 180,
-    value: 0,
+    value: last,
     slide: function (event, ui) {
       $("#amount").val(ui.value);
       var values = ui.value;
-
+      var csrftoken = getCookie('csrftoken');
       // post slider value
-      $.post("/Slider", {
-          slider_value: values.toString(),
+      $.ajax({
+        type: "POST",
+        url: "/Slider/",
+        data: {
+          csrfmiddlewaretoken: csrftoken,
+          slider_value: values.toString()
         },
-        function (data, status) {
-          alert("Data: " + data + "\nStatus: " + status);
-        });
+        success: "hai",
+
+      });
 
 
 

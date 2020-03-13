@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^api/$', APISensorView.as_view(), name='APISensorView'),
     url(r'^Slider/$', APISliderView.as_view(), name='APISliderView'),
     url(r'^getData/$', views.getData, name='getData'),
+    url(r'^getSlider/$', views.getSlider, name='getSlider'),
     # url(r'^get/$'),
 ]

@@ -56,6 +56,12 @@ def getData(request):
     return JsonResponse(data_sensor, safe=False)
 
 
+def getSlider(request):
+    json_serializer = serializers.get_serializer("json")()
+    data_sensor = json_serializer.serialize(Slider.objects.all())
+    data_sensor = json.loads(data_sensor)
+    return JsonResponse(data_sensor, safe=False)
+
 # class ListSensorView(TemplateView):
 #     # template_name = 'pages/sensors.html'
 
@@ -65,6 +71,7 @@ def getData(request):
 #         context_data['all_sensors'] = all_sensors
 
 #         return context_data
+
 
 api_key = "yourpassword"
 
