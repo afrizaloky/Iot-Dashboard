@@ -32,7 +32,7 @@ $(function () {
     },
     async: false
   });
-  console.log(last)
+  console.log(last);
   $("#slider-range-max").slider({
     range: "max",
     min: 0,
