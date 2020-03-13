@@ -8,6 +8,8 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Sensor
+from .models import Slider
+from .serializers import SliderSerializer
 from .serializers import SensorSerializer
 import json
 from django.core import serializers
@@ -80,4 +82,18 @@ class APISensorView(APIView):
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class APISliderView(APIView):
+    def get(self, request):
+        Sliders = Slider.objects.all()
+        serializer = SliderSerializer(Sliders, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = SliderSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -10,3 +10,10 @@ class Sensor(models.Model):
 
     def __str__(self):
         return self.sensor_name
+
+
+class Slider(models.Model):
+    slider_value = models.CharField(max_length=3)
+
+    def __str__(self):
+        return self.slider_value

@@ -5,6 +5,7 @@ __pycache__/
 core/settings.py
 # C extensions
 *.so
+test.js
 test.py
 settings.py
 # Distribution / packaging
