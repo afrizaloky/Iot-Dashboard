@@ -7,12 +7,12 @@
 // Slider
 function getCookie(name) {
   var cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
-    var cookies = document.cookie.split(';');
+  if (document.cookie && document.cookie !== "") {
+    var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
       var cookie = cookies[i].trim();
       // Does this cookie string begin with the name we want?
-      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+      if (cookie.substring(0, name.length + 1) === name + "=") {
         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
         break;
       }
@@ -21,14 +21,14 @@ function getCookie(name) {
   return cookieValue;
 }
 var last;
-$(function () {
-
+$(function() {
   $.ajax({
     method: "GET",
     url: "/getSlider",
-    success: function (data) {
+    success: function(data) {
       last = data[data.length - 1]["fields"]["slider_value"];
       console.log(last);
+      $("#amount").val(parseInt(last));
     },
     async: false
   });
@@ -38,10 +38,11 @@ $(function () {
     min: 0,
     max: 180,
     value: last,
-    slide: function (event, ui) {
+    slide: function(event, ui) {
       $("#amount").val(ui.value);
       var values = ui.value;
-      var csrftoken = getCookie('csrftoken');
+
+      var csrftoken = getCookie("csrftoken");
       // post slider value
       $.ajax({
         type: "POST",
@@ -50,11 +51,8 @@ $(function () {
           csrfmiddlewaretoken: csrftoken,
           slider_value: values.toString()
         },
-        success: "hai",
-
+        success: "hai"
       });
-
-
 
       var mqtt;
       var reconnectTimeout = 2000;
@@ -119,9 +117,7 @@ var endpoint = "/getData";
 $.ajax({
   method: "GET",
   url: endpoint,
-  success: function (data) {
-
-
+  success: function(data) {
     // var last = data[data.length - 1]["fields"]["sensor_value"];
     // console.log(typeof (tmp));
     // console.log(typeof (last));
@@ -189,7 +185,7 @@ $.ajax({
         "screen and (max-width: 640px)",
         {
           axisX: {
-            labelInterpolationFnc: function (value) {
+            labelInterpolationFnc: function(value) {
               return value[0];
             }
           }
@@ -203,7 +199,7 @@ $.ajax({
       responsiveSales
     );
   },
-  error: function (error_data) {
+  error: function(error_data) {
     console.log(error_data);
   }
 });
