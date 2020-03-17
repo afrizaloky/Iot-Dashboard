@@ -29,12 +29,14 @@ SECRET_KEY = config(
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False)
-# DEBUG = True
+DEBUG = True
 
-ALLOWED_HOSTS = ['ghiscure.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['ghiscure.herokuapp.com',
+                 '127.0.0.1', 'localhost', '192.168.100.112']
 
 
-CSRF_TRUSTED_ORIGINS = ['ghiscure.herokuapp.com', '127.0.0.1', 'localhost']
+CSRF_TRUSTED_ORIGINS = ['ghiscure.herokuapp.com',
+                        '127.0.0.1', 'localhost', '192.168.100.112']
 
 
 # Application definition
@@ -140,4 +142,4 @@ STATICFILES_DIRS = (
 )
 
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())

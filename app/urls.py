@@ -16,5 +16,8 @@ urlpatterns = [
     url(r'^Slider/$', APISliderView.as_view(), name='APISliderView'),
     url(r'^getData/$', views.getData, name='getData'),
     url(r'^getSlider/$', views.getSlider, name='getSlider'),
+    url(r'^updateSlider/$', views.UpdateSlider.as_view(), name='updateSlider'),
+    path('slider_detail/', views.slider_list),
+    path('slider_detail/<int:pk>', views.slider_detail),
     # url(r'^get/$'),
 ]

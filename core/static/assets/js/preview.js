@@ -2,7 +2,12 @@
 // function autoRefreshPage() {
 //   window.location = window.location.href;
 // }
-// setInterval('autoRefreshPage()', 5000);
+// setInterval("autoRefreshPage()", 5000);
+
+// setInterval(function() {
+//   console.log("interval 1 detik");
+//   $(".content").load(location.href + " .content");
+// }, 1000); // 60000 = 1 minute
 
 // Slider
 function getCookie(name) {
@@ -20,12 +25,13 @@ function getCookie(name) {
   }
   return cookieValue;
 }
+
 var last;
-$(function() {
+$(function () {
   $.ajax({
     method: "GET",
     url: "/getSlider",
-    success: function(data) {
+    success: function (data) {
       last = data[data.length - 1]["fields"]["slider_value"];
       console.log(last);
       $("#amount").val(parseInt(last));
@@ -38,17 +44,17 @@ $(function() {
     min: 0,
     max: 180,
     value: last,
-    slide: function(event, ui) {
+    slide: function (event, ui) {
       $("#amount").val(ui.value);
       var values = ui.value;
 
       var csrftoken = getCookie("csrftoken");
       // post slider value
       $.ajax({
-        type: "POST",
-        url: "/Slider/",
+        type: "PUT",
+        url: "/slider_detail/270",
         data: {
-          csrfmiddlewaretoken: csrftoken,
+          // csrfmiddlewaretoken: csrftoken,
           slider_value: values.toString()
         },
         success: "hai"
@@ -56,10 +62,10 @@ $(function() {
 
       var mqtt;
       var reconnectTimeout = 2000;
-      var host = "broker.hivemq.com"; //change this
-      var port = 8000;
-      // var host = "test.mosquitto.org"; //change this
-      // var port = 8080;
+      // var host = "broker.hivemq.com"; //change this
+      // var port = 8000;
+      var host = "test.mosquitto.org"; //change this
+      var port = 8080;
       // var host = "192.168.100.137"; //change this
       // var host = "ghiscure.ddns.net"; //change this
       // var port = 9001;
@@ -117,7 +123,7 @@ var endpoint = "/getData";
 $.ajax({
   method: "GET",
   url: endpoint,
-  success: function(data) {
+  success: function (data) {
     // var last = data[data.length - 1]["fields"]["sensor_value"];
     // console.log(typeof (tmp));
     // console.log(typeof (last));
@@ -185,7 +191,7 @@ $.ajax({
         "screen and (max-width: 640px)",
         {
           axisX: {
-            labelInterpolationFnc: function(value) {
+            labelInterpolationFnc: function (value) {
               return value[0];
             }
           }
@@ -199,7 +205,7 @@ $.ajax({
       responsiveSales
     );
   },
-  error: function(error_data) {
+  error: function (error_data) {
     console.log(error_data);
   }
 });
