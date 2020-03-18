@@ -55,6 +55,7 @@ def getData(request):
     json_serializer = serializers.get_serializer("json")()
     data_sensor = json_serializer.serialize(Sensor.objects.all())
     data_sensor = json.loads(data_sensor)
+    # print(len(data_sensor))
     return JsonResponse(data_sensor, safe=False)
 
 
@@ -62,6 +63,7 @@ def getSlider(request):
     json_serializer = serializers.get_serializer("json")()
     data_sensor = json_serializer.serialize(Slider.objects.all())
     data_sensor = json.loads(data_sensor)
+    data_sensor = data_sensor[-10:]
     return JsonResponse(data_sensor, safe=False)
 
 # class ListSensorView(TemplateView):
