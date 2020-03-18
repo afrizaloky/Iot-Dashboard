@@ -108,61 +108,33 @@ class APISliderView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class UpdateSlider(generics.UpdateAPIView):
-    queryset = Slider.objects.all()
-    serializer_class = SliderSerializer
-
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.slider_value = request.data.get("slider_value")
-        instance.save()
-
-        serializer = self.get_serializer(instance)
-        serializer.is_valid(raise_exception=True)
-        self.perform_update(serializer)
-
-        return Response(serializer.data)
-
-
-@api_view(['GET', 'POST'])
-def slider_list(request):
+class SliderDetail(APIView):
     """
-    List all code sliders, or create a new slider.
+    Retrieve, update or delete a slider instance.
     """
-    if request.method == 'GET':
-        sliders = Slider.objects.all()
-        serializer = SliderSerializer(sliders, many=True)
-        return Response(serializer.data)
 
-    elif request.method == 'POST':
-        serializer = SliderSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get_object(self, pk):
+        try:
+            return Slider.objects.get(pk=pk)
+        except Slider.DoesNotExist:
+            raise Http404
 
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def slider_detail(request, pk):
-    """
-    Retrieve, update or delete a code slider.
-    """
-    try:
-        slider = Slider.objects.get(pk=pk)
-    except Slider.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
+    def get(self, request, pk, format=None):
+        slider = self.get_object(pk)
         serializer = SliderSerializer(slider)
         return Response(serializer.data)
 
-    elif request.method == 'PUT':
+    def put(self, request, pk, format=None):
+        slider = self.get_object(pk)
         serializer = SliderSerializer(slider, data=request.data)
+        print(request.data)
+        print(serializer.is_valid())
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == 'DELETE':
+    def delete(self, request, pk, format=None):
+        slider = self.get_object(pk)
         slider.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

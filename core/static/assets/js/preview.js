@@ -48,13 +48,26 @@ $(function () {
       $("#amount").val(ui.value);
       var values = ui.value;
 
-      var csrftoken = getCookie("csrftoken");
+      var csrftoken = getCookie('csrftoken');
+
+      function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+      }
+      $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        }
+      });
       // post slider value
       $.ajax({
         type: "PUT",
-        url: "/slider_detail/270",
+        url: "/slider_detail/425/",
         data: {
           // csrfmiddlewaretoken: csrftoken,
+          id: 425,
           slider_value: values.toString()
         },
         success: "hai"

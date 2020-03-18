@@ -29,7 +29,7 @@ SECRET_KEY = config(
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False)
-DEBUG = True
+# DEBUG = True
 
 ALLOWED_HOSTS = ['ghiscure.herokuapp.com',
                  '127.0.0.1', 'localhost', '192.168.100.112']
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'app'
 ]
 
@@ -67,7 +68,6 @@ LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 TEMPLATE_DIR = os.path.join(
     BASE_DIR, "core/templates")  # ROOT dir for templates
-
 
 TEMPLATES = [
     {
@@ -142,4 +142,4 @@ STATICFILES_DIRS = (
 )
 
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
