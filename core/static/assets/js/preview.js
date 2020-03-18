@@ -64,10 +64,10 @@ $(function () {
       // post slider value
       $.ajax({
         type: "PUT",
-        url: "/slider_detail/425/",
+        url: "/slider_detail/1/",
         data: {
           // csrfmiddlewaretoken: csrftoken,
-          id: 425,
+          id: 1,
           slider_value: values.toString()
         },
         success: "hai"
