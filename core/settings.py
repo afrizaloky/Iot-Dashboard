@@ -31,10 +31,11 @@ SECRET_KEY = config(
 DEBUG = config('DEBUG', default=False)
 # DEBUG = True
 
-ALLOWED_HOSTS = ['ghiscure.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['ghiscure.herokuapp.com', '192.168.100.112', '127.0.0.1']
 
 
-CSRF_TRUSTED_ORIGINS = ['ghiscure.herokuapp.com', '127.0.0.1', 'localhost']
+CSRF_TRUSTED_ORIGINS = ['ghiscure.herokuapp.com',
+                        '127.0.0.1', '192.168.100.112']
 
 
 # Application definition
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'app'
 ]
 
