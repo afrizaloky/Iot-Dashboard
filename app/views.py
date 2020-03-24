@@ -37,11 +37,11 @@ def pages(request):
         print(load_template)
         if(load_template == "sensors.html"):
             print("sensors pages")
-            all_sensors = Sensor.objects.all()
-            print(all_sensors)
+            # all_sensors = Sensor.objects.all()
+            # total_data = len(all_sensors)
+            last_ten = Sensor.objects.all().order_by('-id')[:10]
+            all_sensors = reversed(last_ten)
             context = {"all_sensors": all_sensors}
-
-            # return render(request, "pages/sensors.html", {"all_sensors": all_sensors})
 
         return HttpResponse(template.render(context, request))
 
