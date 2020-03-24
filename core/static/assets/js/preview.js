@@ -9,6 +9,8 @@
 //   $(".content").load(location.href + " .content");
 // }, 1000); // 60000 = 1 minute
 
+var config_MQTT = false; // use mqtt or not
+
 // Slider
 function getCookie(name) {
   var cookieValue = null;
@@ -27,11 +29,11 @@ function getCookie(name) {
 }
 
 var last;
-$(function () {
+$(function() {
   $.ajax({
     method: "GET",
     url: "/getSlider",
-    success: function (data) {
+    success: function(data) {
       last = data[data.length - 1]["fields"]["slider_value"];
       console.log(last);
       $("#amount").val(parseInt(last));
@@ -44,18 +46,18 @@ $(function () {
     min: 0,
     max: 180,
     value: last,
-    slide: function (event, ui) {
+    slide: function(event, ui) {
       $("#amount").val(ui.value);
       var values = ui.value;
 
-      var csrftoken = getCookie('csrftoken');
+      var csrftoken = getCookie("csrftoken");
 
       function csrfSafeMethod(method) {
         // these HTTP methods do not require CSRF protection
-        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        return /^(GET|HEAD|OPTIONS|TRACE)$/.test(method);
       }
       $.ajaxSetup({
-        beforeSend: function (xhr, settings) {
+        beforeSend: function(xhr, settings) {
           if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
           }
@@ -121,7 +123,9 @@ $(function () {
 
         mqtt.connect(options); //connect
       }
-      MQTTconnect();
+      if (config_MQTT == true) {
+        MQTTconnect();
+      }
     }
   });
   // $("#amount").val($("#slider-range-max").slider("value"));
@@ -136,7 +140,7 @@ var endpoint = "/getData";
 $.ajax({
   method: "GET",
   url: endpoint,
-  success: function (data) {
+  success: function(data) {
     // var last = data[data.length - 1]["fields"]["sensor_value"];
     // console.log(typeof (tmp));
     // console.log(typeof (last));
@@ -204,7 +208,7 @@ $.ajax({
         "screen and (max-width: 640px)",
         {
           axisX: {
-            labelInterpolationFnc: function (value) {
+            labelInterpolationFnc: function(value) {
               return value[0];
             }
           }
@@ -218,7 +222,7 @@ $.ajax({
       responsiveSales
     );
   },
-  error: function (error_data) {
+  error: function(error_data) {
     console.log(error_data);
   }
 });
