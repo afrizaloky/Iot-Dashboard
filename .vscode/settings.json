@@ -1,5 +1,14 @@
 {
-    "python.pythonPath": "env\\Scripts\\python.exe",
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "One Dark Pro Vivid",
+    "editor.formatOnSave": true,
+    "php.suggest.basic": false,
+    "files.autoSave": "onFocusChange",
+    // "editor.fontFamily": "'Fira Code','Source Code Pro','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "python.pythonPath": "venv\\Scripts\\python.exe",
+
+
+
 }
