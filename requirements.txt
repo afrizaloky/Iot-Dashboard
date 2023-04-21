@@ -16,7 +16,7 @@ pylint==2.4.4
 python-decouple==3.3
 pytz==2019.3
 six==1.14.0
-sqlparse==0.3.0
+sqlparse==0.4.4
 typed-ast==1.4.1
 Unipath==1.1
 whitenoise==5.0.1
